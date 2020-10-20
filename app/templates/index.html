@@ -8,5 +8,11 @@
     </head>
     <body>
         <h1>Hello, {{ user.username }}!</h1>
+        {% for session in sessions %}
+        <div>
+            <p><b>{{ session.student.name }}</b></p>
+            <p>{{ session.notes }}</p>
+        </div>
+        {% endfor %}
     </body>
 </html>
