@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+<!-- The form object used here is passed by the view function in routes.py -->
+{% block content %}
+    <h1>Sign In</h1>
+    <!--
+    Setting action to an empty string will make the browser use the url in the
+    address bar when the user submits the form
+    -->
+    <form action="" method="post" novalidate>
+        <!-- Protects against CSRF attacks by using the SECRET_KEY  -->
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username.label }}<br>
+            {{ form.username(size=32) }}
+        </p>
+        <p>
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
