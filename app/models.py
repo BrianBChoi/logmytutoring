@@ -8,6 +8,7 @@ class User(db.Model):
     password_hash = db.Column(db.String(128))
 
     students = db.relationship('Student', backref='tutor', lazy='dynamic')
+    sessions = db.relationship('Session', backref='tutor', lazy='dynamic')
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
@@ -18,5 +19,16 @@ class Student(db.Model):
     hourly_rate = db.Column(db.Float, index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+    sessions = db.relationship('Session', backref='student', lazy='dynamic')
+
     def __repr__(self):
         return '<Student {}>'.format(self.name)
+
+class Session(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime, index=True)
+    hours = db.Column(db.Float)
+    revenue = db.Column(db.Float, index=True)
+    notes = db.Column(db.Text)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
