@@ -3,16 +3,25 @@
         {% if title %}
         <title>{{ title }} - Log My Tutoring</title>
         {% else %}
-        <title>Welcome to Log My Tutoring</title>
+        <title>Log My Tutoring</title>
         {% endif %}
     </head>
     <body>
         <div>
-            Log My Tutoring
+            Log My Tutoring:
             <a href="/index">Home</a>
             <a href="/login">Login</a>
         </div>
         <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
         {% block content %}{% endblock %}
     </body>
 </html>
