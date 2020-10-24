@@ -1,6 +1,11 @@
-from app import db
+from app import db, login
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+
+# Tells flask-login the info in the database about the specified user
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
