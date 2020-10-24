@@ -32,3 +32,6 @@ class Session(db.Model):
     notes = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
+
+    def __repr__(self):
+        return '<Session {}: {}>'.format(self.date, self.notes)

@@ -1,7 +1,6 @@
 # Specifically for this Flask app
 config.py
-
-
+app.db
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
