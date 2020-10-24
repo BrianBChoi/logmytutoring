@@ -22,11 +22,14 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    # Is the user already logged in? Then redirect to home page
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = LoginForm()
+    # This block runs when the user has clicked submit
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
+        # If the user does not exist or the password does not match
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
             return redirect(url_for('login'))
