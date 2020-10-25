@@ -33,7 +33,15 @@ def profile():
 @app.route('/edit-profile')
 @login_required
 def edit_profile():
-    return render_template()
+    form = EditProfileForm()
+    if form.validate_on_submit():
+        current_user.name = form.name.data
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('profile'))
+    return render_template('edit_profile.html', title='Edit Profile', form=form)
 
 
 @app.route('/login', methods=['GET', 'POST'])
