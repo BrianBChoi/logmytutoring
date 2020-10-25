@@ -30,6 +30,12 @@ def profile():
     return render_template('profile.html')
 
 
+@app.route('/edit-profile')
+@login_required
+def edit_profile():
+    return render_template()
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # Is the user already logged in? Then redirect to home page
