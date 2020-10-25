@@ -24,6 +24,12 @@ def index():
     return render_template('index.html', title='Home', sessions=sessions)
 
 
+@app.route('/profile')
+@login_required
+def user():
+    return render_template('profile.html')
+
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     # Is the user already logged in? Then redirect to home page
