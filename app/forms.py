@@ -37,6 +37,7 @@ class EditProfileForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()]
                         default=current_user.email)
     submit = SubmitField('Submit')
+    cancel = SubmitField('Cancel')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
