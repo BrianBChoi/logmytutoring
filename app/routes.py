@@ -11,7 +11,6 @@ from app.models import User
 @app.route('/index')
 @login_required
 def index():
-    user = {'username': 'Miguel'}
     sessions = [
         {
             'student': {'name': 'Mate'},
@@ -22,7 +21,7 @@ def index():
             'notes': 'We worked on graphing functions today'
         }
     ]
-    return render_template('index.html', title='Home', user=user, sessions=sessions)
+    return render_template('index.html', title='Home', sessions=sessions)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -52,7 +51,7 @@ def login():
 
         # The second conditional ensures that the url following 'next' is a
         # relative path to another page in the website, not some other website
-        
+
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
         return redirect(next_page)
