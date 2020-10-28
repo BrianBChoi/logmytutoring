@@ -4,4 +4,5 @@
     <h2>{{ current_user.name }}</h2
     <p><b>Username:</b> {{ current_user.username }}</p>
     <p><b>Email:</b> {{ current_user.email }}</p>
+    <p><a href="{{ url_for('edit_profile') }}">Edit Profile</a></p>
 {% endblock %}

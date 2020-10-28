@@ -30,13 +30,12 @@ def profile():
     return render_template('profile.html')
 
 
-@app.route('/edit-profile')
+@app.route('/edit-profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
     form = EditProfileForm(obj=current_user)
     if form.validate_on_submit():
         current_user.name = form.name.data
-        current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
