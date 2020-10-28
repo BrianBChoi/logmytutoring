@@ -34,6 +34,8 @@ def profile():
 @login_required
 def edit_profile():
     form = EditProfileForm(obj=current_user)
+    if form.cancel.data:
+        return redirect(url_for('profile'))
     if form.validate_on_submit():
         current_user.name = form.name.data
         current_user.email = form.email.data
