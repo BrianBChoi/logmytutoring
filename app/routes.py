@@ -38,7 +38,7 @@ def edit_profile():
         current_user.name = form.name.data
         current_user.email = form.email.data
         db.session.commit()
-        flash('Congratulations, you are now a registered user!')
+        flash('Your changes have been saved!')
         return redirect(url_for('profile'))
     return render_template('edit_profile.html', title='Edit Profile', form=form)
 
