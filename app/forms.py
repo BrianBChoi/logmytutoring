@@ -32,14 +32,12 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class EditProfileForm(FlaskForm):
-    name = StringField('First and Last Name', validators=[DataRequired()]
-                        default=current_user.name)
-    email = StringField('Email', validators=[DataRequired(), Email()]
-                        default=current_user.email)
+    name = StringField('First and Last Name', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Submit')
     cancel = SubmitField('Cancel')
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
-        if user is not None and email.data is not current_user.email:
+        if user is not None:
             raise ValidationError('Please use a different email address.')
