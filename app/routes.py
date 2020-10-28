@@ -33,7 +33,7 @@ def profile():
 @app.route('/edit-profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
-    form = EditProfileForm(obj=current_user)
+    form = EditProfileForm(user=current_user)
     if form.cancel.data:
         return redirect(url_for('profile'))
     if form.validate_on_submit():
