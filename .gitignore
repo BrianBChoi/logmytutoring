@@ -1,6 +1,7 @@
 # Specifically for this Flask app
 config.py
 app.db
+app.db-journal
 logs/*
 
 # Byte-compiled / optimized / DLL files
