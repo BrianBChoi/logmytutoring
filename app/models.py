@@ -1,4 +1,5 @@
 from app import db, login
+from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from hashlib import md5
@@ -46,7 +47,7 @@ class Student(db.Model):
 
 class Session(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.DateTime, index=True)
+    date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     hours = db.Column(db.Float)
     revenue = db.Column(db.Float, index=True)
     notes = db.Column(db.Text)
