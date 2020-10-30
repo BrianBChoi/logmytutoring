@@ -34,6 +34,11 @@ class User(UserMixin, db.Model):
         return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
             digest, size)
 
+    def logged_sessions(self):
+        return Session.query.filter(Session.user_id==self.id).order_by(
+            Session.date.desc())
+
+
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), index=True)
