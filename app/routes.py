@@ -4,7 +4,7 @@ from werkzeug.urls import url_parse
 
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm
-from app.models import User
+from app.models import User, Session
 
 
 @app.route('/')
@@ -12,6 +12,23 @@ from app.models import User
 @login_required
 def index():
     return render_template('index.html', title='Home')
+
+
+@app.route('/new-session', methods=['GET', 'POST'])
+@login_required
+def new_session():
+    form = NewSessionForm()
+    if form.cancel.data:
+        return redirect(url_for('index'))
+    if form.validate_on_submit():
+        session = Session(date=form.date.data, hours=form.hours.data,
+                          revenue=form.revenue.data, notes=form.notes.data
+                          tutor=current_user)
+        db.session.add(session)
+        db.session.commit()
+        flash('Your session has been saved!')
+        return redirect(url_for('index'))
+    return render_template('new_session.html', title='New Session', form=form)
 
 
 @app.route('/profile')
