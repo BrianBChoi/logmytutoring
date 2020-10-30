@@ -11,17 +11,7 @@ from app.models import User
 @app.route('/index')
 @login_required
 def index():
-    sessions = [
-        {
-            'student': {'name': 'Mate'},
-            'notes': 'He did well today!'
-        },
-        {
-            'student': {'name': 'Shreya'},
-            'notes': 'We worked on graphing functions today'
-        }
-    ]
-    return render_template('index.html', title='Home', sessions=sessions)
+    return render_template('index.html', title='Home')
 
 
 @app.route('/profile')

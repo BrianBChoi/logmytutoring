@@ -3,9 +3,9 @@
 {% block content %}
     <h1>{{ current_user.name }}</h1>
     <hr>
-    {% for session in sessions %}
+    {% for session in current_user.new_sessions().all() %}
     <div>
-        <p><b>{{ session.student.name }}</b></p>
+        <p><b>{{ session.date }}</b></p>
         <p>{{ session.notes }}</p>
     </div>
     {% endfor %}
