@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField,\
-    IntegerField, DateTimeField
+    IntegerField, DateTimeField, FloatField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User
 
@@ -53,5 +53,11 @@ class NewSessionForm(FlaskForm):
     hours = IntegerField('Hours', validators=[DataRequired()])
     revenue = IntegerField('Revenue', validators=[DataRequired()])
     notes = StringField('Notes', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+    cancel = SubmitField('Cancel')
+
+class NewStudentForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired()])
+    hourly_rate = FloatField('Hourly Rate', validators=[DataRequired()])
     submit = SubmitField('Submit')
     cancel = SubmitField('Cancel')
