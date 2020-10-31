@@ -23,7 +23,7 @@ def new_session():
         return redirect(url_for('index'))
     if form.validate_on_submit():
         session = Session(date=form.date.data, hours=form.hours.data,
-                          revenue=form.revenue.data, notes=form.notes.data
+                          revenue=form.revenue.data, notes=form.notes.data,
                           tutor=current_user)
         db.session.add(session)
         db.session.commit()
