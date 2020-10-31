@@ -4,7 +4,7 @@
     <h1>Students</h1>
     <hr>
     <a href="{{ url_for('new_student') }}">Add a student</a>
-    {% for student in current_user.students %}
+    {% for student in current_user.new_students().all() %}
     <div>
         <p>
             <b>{{ student.name }}</b><br>

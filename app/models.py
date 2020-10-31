@@ -37,6 +37,9 @@ class User(UserMixin, db.Model):
     def new_sessions(self):
         return self.sessions.order_by(Session.date.desc())
 
+    def new_students(self):
+        return self.students.order_by(Student.id.desc())
+
 
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
