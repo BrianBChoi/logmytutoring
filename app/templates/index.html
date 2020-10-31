@@ -3,6 +3,11 @@
 {% block content %}
     <h1>{{ current_user.name }}</h1>
     <hr>
+    <div>
+        {{ current_user.sessions.count() }} Sessions
+        {{ current_user.students.count() }} Students
+    </div>
+    <hr>
     {% for session in current_user.new_sessions().all() %}
     <div>
         <p><b>{{ session.date }}</b></p>
