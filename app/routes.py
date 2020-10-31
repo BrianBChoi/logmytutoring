@@ -32,6 +32,12 @@ def new_session():
     return render_template('new_session.html', title='New Session', form=form)
 
 
+@app.route('/students')
+@login_required
+def students():
+    return render_template('students.html', title='Students')
+
+
 @app.route('/profile')
 @login_required
 def profile():
