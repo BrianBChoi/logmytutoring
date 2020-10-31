@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Students</h1>
+    <hr>
+    {% for student in current_user.students %}
+    <div>
+        <p>
+            <b>{{ student.name }}</b><br>
+            Hourly Rate: {{ student.hourly_rate }}<br>
+        </p>
+    </div>
+    {% endfor %}
+{% endblock %}
