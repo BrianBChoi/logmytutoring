@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField \
+                    IntegerField, DateTimeField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User
 
@@ -45,3 +46,12 @@ class EditProfileForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None and email.data != self.default_email:
             raise ValidationError('Please use a different email address.')
+
+class NewSessionForm(FlaskForm):
+    student = StringField('Student', validators=[DataRequired()])
+    date = DateTimeField('Date', validators=[DataRequired()])
+    hours = IntegerField('Hours', validators=[DataRequired()])
+    revenue = IntegerField('Revenue', validators=[DataRequired()])
+    notes = StringField('Notes', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+    cancel = SubmitField('Cancel')
