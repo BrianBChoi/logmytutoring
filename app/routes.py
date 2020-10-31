@@ -4,8 +4,8 @@ from werkzeug.urls import url_parse
 
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, EditProfileForm,\
-    NewSessionForm
-from app.models import User, Session
+    NewSessionForm, NewStudentForm
+from app.models import User, Session, Student
 
 
 @app.route('/')
@@ -36,6 +36,22 @@ def new_session():
 @login_required
 def students():
     return render_template('students.html', title='Students')
+
+
+@app.route('/new-student', methods=['GET', 'POST'])
+@login_required
+def new_student():
+    form = NewStudentForm()
+    if form.cancel.data:
+        return redirect(url_for('students'))
+    if form.validate_on_submit():
+        student = Student(name=form.name.data, hourly_rate=form.hourly_rate.data,
+                          tutor=current_user)
+        db.session.add(student)
+        db.session.commit()
+        flash('The student has been added!')
+        return redirect(url_for('students'))
+    return render_template('new_student.html', title='New Student', form=form)
 
 
 @app.route('/profile')
