@@ -35,7 +35,7 @@ def new_session():
 @app.route('/profile')
 @login_required
 def profile():
-    return render_template('profile.html')
+    return render_template('profile.html', title='Profile')
 
 
 @app.route('/edit-profile', methods=['GET', 'POST'])
