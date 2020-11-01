@@ -40,6 +40,14 @@ class User(UserMixin, db.Model):
     def new_students(self):
         return self.students.order_by(Student.id.desc())
 
+    def revenue_this_month(self):
+        revenue = 0
+        for session in self.sessions.all():
+            if session.revenue is not None:
+                if session.date.month == datetime.now().month:
+                    revenue += session.revenue
+        return "{:n}".format(revenue)
+
 
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
