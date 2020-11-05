@@ -12,7 +12,10 @@ from app.models import User, Session, Student
 @app.route('/index')
 @login_required
 def index():
-    return render_template('index.html', title='Home')
+    page = request.args.get('page', 1, type=int)
+    sessions = current_user.new_sessions().paginate(
+        page, app.config['POSTS_PER_PAGE'], False)
+    return render_template('index.html', title='Home', sessions=sessions.items)
 
 
 @app.route('/new-session', methods=['GET', 'POST'])
