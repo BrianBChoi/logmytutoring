@@ -12,7 +12,15 @@ from app.models import User, Session, Student
 @app.route('/index')
 @login_required
 def index():
-    return render_template('index.html', title='Home')
+    page = request.args.get('page', 1, type=int)
+    sessions = current_user.new_sessions().paginate(
+        page, app.config['POSTS_PER_PAGE'], False)
+    next_url = url_for('index', page=sessions.next_num) \
+        if sessions.has_next else None
+    prev_url = url_for('index', page=sessions.prev_num) \
+        if sessions.has_prev else None
+    return render_template('index.html', title='Home', sessions=sessions.items,
+                           next_url=next_url, prev_url=prev_url)
 
 
 @app.route('/new-session', methods=['GET', 'POST'])

@@ -9,10 +9,16 @@
         ${{ current_user.revenue_this_month() }} This Month
     </div>
     <hr>
-    {% for session in current_user.new_sessions().all() %}
+    {% for session in sessions %}
     <div>
         <p><b>{{ session.date }}</b></p>
         <p>{{ session.notes }}</p>
     </div>
     {% endfor %}
+    {% if prev_url %}
+    <a href="{{ prev_url }}">Newer sessions</a>
+    {% endif %}
+    {% if next_url %}
+    <a href="{{ next_url }}">Older sessions</a>
+    {% endif %}
 {% endblock %}
