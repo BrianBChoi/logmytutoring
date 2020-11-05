@@ -15,4 +15,10 @@
         <p>{{ session.notes }}</p>
     </div>
     {% endfor %}
+    {% if prev_url %}
+    <a href="{{ prev_url }}">Newer sessions</a>
+    {% endif %}
+    {% if next_url %}
+    <a href="{{ next_url }}">Older sessions</a>
+    {% endif %}
 {% endblock %}
