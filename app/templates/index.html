@@ -9,23 +9,23 @@
       <h2>{{ current_user.name }}</h2>
     </li>
   </ul>
-    <hr>
-    <div>
-        {{ current_user.sessions.count() }} Sessions
-        {{ current_user.students.count() }} Students
-        ${{ current_user.revenue_this_month() }} This Month
-    </div>
-    <hr>
-    {% for session in sessions %}
-    <div>
-        <p><b>{{ session.date }}</b></p>
-        <p>{{ session.notes }}</p>
-    </div>
-    {% endfor %}
-    {% if prev_url %}
-    <a href="{{ prev_url }}">Newer sessions</a>
-    {% endif %}
-    {% if next_url %}
-    <a href="{{ next_url }}">Older sessions</a>
-    {% endif %}
+  <hr>
+  <div>
+    {{ current_user.sessions.count() }} Sessions
+    {{ current_user.students.count() }} Students
+    ${{ current_user.revenue_this_month() }} This Month
+  </div>
+  <hr>
+  {% for session in sessions %}
+  <div>
+    <p><b>{{ session.date }}</b></p>
+    <p>{{ session.notes }}</p>
+  </div>
+  {% endfor %}
+  {% if prev_url %}
+  <a href="{{ prev_url }}">Newer sessions</a>
+  {% endif %}
+  {% if next_url %}
+  <a href="{{ next_url }}">Older sessions</a>
+  {% endif %}
 {% endblock %}
