@@ -52,17 +52,17 @@
         <span class="navbar-toggler-icon"></span>
       </button>
     </nav>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul>
+    <div class="container">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
         {% for message in messages %}
-        <li>{{ message }}</li>
+        <div class="alert alert-info" role="alert">{{ message }}</div>
         {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
+      {% endif %}
+      {% endwith %}
 
-    {% block content %}{% endblock %}
+      {% block content %}{% endblock %}
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
