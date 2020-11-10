@@ -17,9 +17,12 @@
   </div>
   <hr>
   {% for session in sessions %}
-  <div>
-    <p><b>{{ session.date }}</b></p>
-    <p>{{ session.notes }}</p>
+  <div class="card border-secondary mb-3">
+    <div class="card-header">{{ session.date }}</div>
+    <div class="card-body">
+      <h5 class="card-title">{{ session.student }}</h5>
+      <p class="card-text">{{ session.notes }}</p>
+    </div>
   </div>
   {% endfor %}
   {% if prev_url %}
