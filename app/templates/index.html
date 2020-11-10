@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>{{ current_user.name }}</h1>
+  <ul class="list-inline">
+    <li class="list-inline-item">
+      <h2>{{ current_user.name }}</h2>
+    </li>
+  </ul>
     <hr>
     <div>
         {{ current_user.sessions.count() }} Sessions
