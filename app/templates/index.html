@@ -3,6 +3,9 @@
 {% block content %}
   <ul class="list-inline">
     <li class="list-inline-item">
+      <img src="{{ current_user.avatar(64) }}" class="rounded-circle">
+    </li>
+    <li class="list-inline-item">
       <h2>{{ current_user.name }}</h2>
     </li>
   </ul>
